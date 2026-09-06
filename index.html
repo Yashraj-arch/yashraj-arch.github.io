@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yashraj Nimbalkar - Backend Enginner</title>
-    <meta name="description" content="B.Com graduate turned software engineer specializing in backend development, with a growing focus on AI.">
+    <meta name="description" content="B.Com graduate turned backend software engineer, building with FastAPI, JWT, and OAuth 2.0, with a growing focus on AI/ML.">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -165,6 +165,50 @@
             transform: scale(1.05);
         }
 
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 0.9rem;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.6);
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #16c95d;
+            box-shadow: 0 0 8px rgba(22, 201, 93, 0.6);
+            animation: status-pulse 2s ease-in-out infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes status-pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.2); }
+        }
+
+        .status-latency {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        @media (max-width: 900px) {
+            .status-badge { display: none; }
+        }
+
         .menu-toggle {
             display: none;
             flex-direction: column;
@@ -223,7 +267,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0 4rem;
+            padding: 6rem 4rem 2rem;
             position: relative;
         }
 
@@ -232,13 +276,20 @@
             width: 100%;
             display: flex;
             align-items: center;
-            gap: 6rem;
+            gap: 5rem;
             justify-content: space-between;
         }
 
         .hero-text {
             flex: 1;
+            min-width: 0;
             max-width: 600px;
+        }
+
+        .hero-visual {
+            flex-shrink: 0;
+            display: flex;
+            justify-content: flex-end;
         }
 
         .hero-text h1 {
@@ -308,60 +359,102 @@
             transform: translateX(4px);
         }
 
-        /* Interactive Floating Dots Animation */
-        .floating-dots-container {
-            position: relative;
-            width: 400px;
-            height: 400px;
+        /* API Demo Widget */
+        .code-card {
+            width: 480px;
+            max-width: 100%;
+            background: #17181c;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            font-family: 'Courier New', monospace;
+        }
+
+        .code-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            padding: 1rem 1.25rem 0.5rem;
+        }
+
+        .code-card-tabs {
+            display: flex;
+            gap: 1.25rem;
+        }
+
+        .code-tab-btn {
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #6e7681;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.25rem 0;
+            transition: color 0.2s ease;
+        }
+
+        .code-tab-btn:hover {
+            color: #c9d1d9;
+        }
+
+        .code-tab-btn.active {
+            color: #ffffff;
+        }
+
+        .code-card-actions {
+            display: flex;
+            gap: 0.6rem;
+        }
+
+        .code-icon-btn {
             display: flex;
             align-items: center;
             justify-content: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            border: none;
+            background: transparent;
+            color: #8b949e;
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
 
-        .floating-dot {
-            position: absolute;
-            border-radius: 50%;
-            pointer-events: none;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        .code-icon-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
         }
 
-        .floating-dot.small {
-            width: 8px;
-            height: 8px;
-            background: rgba(0, 68, 255, 0.4);
-            box-shadow: 0 0 20px rgba(0, 68, 255, 0.3);
+        .code-card-lang {
+            padding: 0 1.25rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #e6e6e6;
+            margin-bottom: 0.5rem;
         }
 
-        .floating-dot.medium {
-            width: 12px;
-            height: 12px;
-            background: rgba(0, 68, 255, 0.6);
-            box-shadow: 0 0 30px rgba(0, 68, 255, 0.4);
+        .code-card-body {
+            margin: 0;
+            padding: 0 1.25rem 1.75rem;
+            font-size: 0.85rem;
+            line-height: 1.85;
+            white-space: pre-wrap;
+            word-break: break-word;
+            color: #d4d4d4;
         }
 
-        .floating-dot.large {
-            width: 16px;
-            height: 16px;
-            background: rgba(0, 68, 255, 0.8);
-            box-shadow: 0 0 40px rgba(0, 68, 255, 0.5);
-        }
+        .code-card-body .code-kw { color: #ff7b72; }
+        .code-card-body .code-fn { color: #d2a8ff; }
+        .code-card-body .code-str { color: #7ee787; }
+        .code-card-body .code-deco { color: #79c0ff; }
+        .code-card-body .code-cls { color: #ffa657; }
+        .code-card-body .code-comment { color: #6e7681; font-style: italic; }
 
-        .center-dot {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 24px;
-            height: 24px;
-            background: var(--accent);
-            border-radius: 50%;
-            box-shadow: 0 0 60px rgba(0, 68, 255, 0.6);
-            animation: pulse-center 3s ease-in-out infinite;
-        }
-
-        @keyframes pulse-center {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 60px rgba(0, 68, 255, 0.6); }
-            50% { transform: translate(-50%, -50%) scale(1.2); box-shadow: 0 0 80px rgba(0, 68, 255, 0.8); }
+        @media (max-width: 1024px) {
+            .code-card { width: 100%; }
         }
 
         /* Sections */
@@ -768,9 +861,11 @@
         /* Responsive Design */
         @media (max-width: 1024px) {
             .projects-grid { grid-template-columns: 1fr; }
-            .hero-content { gap: 3rem; }
+            .hero-content { flex-direction: column; align-items: flex-start; gap: 3rem; }
+            .hero-text { max-width: 100%; }
+            .hero-visual { justify-content: flex-start; width: 100%; }
             .about-content { grid-template-columns: 1fr; gap: 4rem; }
-            .floating-dots-container { width: 300px; height: 300px; }
+            .code-card { width: 100%; }
         }
 
         @media (max-width: 768px) {
@@ -799,10 +894,11 @@
             .menu-toggle.active span:nth-child(2) { opacity: 0; }
             .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
 
-            .hero { padding: 0 2rem; }
-            .hero-content { flex-direction: column-reverse; text-align: center; margin-top: 4rem; gap: 2rem;}
+            .hero { padding: 6rem 2rem 2rem; }
+            .hero-content { flex-direction: column; align-items: center; text-align: center; margin-top: 4rem; gap: 2rem;}
             .hero-text h1 { font-size: 3rem; }
             .hero-text { max-width: 100%; }
+            .hero-visual { justify-content: center; }
             
             section { padding: 5rem 2rem; }
             .section-title { font-size: 2.2rem; }
@@ -819,7 +915,15 @@
 </head>
 <body>
     <nav id="navbar">
-        <div class="logo" onclick="scrollToSection('home')">YN</div>
+        <div class="nav-left">
+            <div class="logo" onclick="scrollToSection('home')">YN</div>
+            <div class="status-badge" id="statusBadge">
+                <span class="status-dot"></span>
+                <span>Backend Dev @ Shekru Labs</span>
+                <span>·</span>
+                <span>Latency: <span class="status-latency" id="statusLatency">12ms</span></span>
+            </div>
+        </div>
         <div class="menu-toggle" id="mobile-menu" onclick="toggleMenu()">
             <span></span>
             <span></span>
@@ -842,10 +946,10 @@
                     <span class="animated-word" id="animatedText">
                         <!-- Animated letters will be inserted here -->
                     </span>
-                    <span>yashraj</span> here.
+                    <span class="animated-word" id="yashrajText">yashraj</span> here.
                 </h1>
                 <p>
-                    B.Com graduate turned software engineer specializing in backend development, with a growing focus on AI.
+                    B.Com graduate turned backend software engineer, building with FastAPI, JWT, and OAuth 2.0 — and growing into AI/ML along the way.
                 </p>
                 <a href="#projects" class="cta-button">
                     <span>View my work.</span>
@@ -856,12 +960,43 @@
             </div>
 
             <div class="hero-visual">
-                <div class="floating-dots-container" id="dotsContainer">
-                    <div class="center-dot"></div>
+                <div class="code-card reveal">
+                    <div class="code-card-header">
+                        <div class="code-card-tabs">
+                            <button class="code-tab-btn active" data-file="main">main.py</button>
+                            <button class="code-tab-btn" data-file="auth">auth.py</button>
+                            <button class="code-tab-btn" data-file="model">model.py</button>
+                        </div>
+                        <div class="code-card-actions">
+                            <button class="code-icon-btn" id="codeDownloadBtn" title="Download">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7 10 12 15 17 10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
+                            </button>
+                            <button class="code-icon-btn" id="codeCopyBtn" title="Copy">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="code-card-lang">Python</div>
+                    <pre class="code-card-body"><code id="codeSnippet"></code></pre>
                 </div>
             </div>
         </div>
     </section>
+
+    <script id="code-data" type="application/json">
+    {
+        "main": "@app.get(\"/developer\")\nasync def get_profile():\n    return {\n        \"name\": \"Yashraj Nimbalkar\",\n        \"specialty\": \"High-performance backend systems\",\n        \"stack\": [\"FastAPI\", \"JWT\", \"SQLAlchemy\", \"PyTorch\"],\n    }",
+        "auth": "@app.post(\"/auth/token\")\nasync def login(form: OAuth2PasswordRequestForm = Depends()):\n    user = authenticate_user(form.username, form.password)\n    if not user:\n        raise HTTPException(status_code=401, detail=\"Invalid credentials\")\n    token = create_jwt_token(data={\"sub\": user.username})\n    return {\"access_token\": token, \"token_type\": \"bearer\"}",
+        "model": "class Property(Base):\n    __tablename__ = \"properties\"\n\n    id = Column(Integer, primary_key=True, index=True)\n    address = Column(String, nullable=False)\n    valuation = Column(Float, nullable=False)\n    owner_id = Column(Integer, ForeignKey(\"users.id\"))\n\n    owner = relationship(\"User\", back_populates=\"properties\")"
+    }
+    </script>
 
     <section id="about">
         <h2 class="section-title reveal">about me</h2>
@@ -869,7 +1004,7 @@
             <div class="about-text reveal">
                 <p>
                     Before I got into software engineering, I spent years building actual businesses. I learned pretty quickly that
-                    <strong>spreadsheets mean nothing if they don't help you make smarter calls the next day.</strong>
+                    <strong>a system only matters if it actually holds up in production, under real users and real load.</strong>
                 </p>
                 <p>
                     At 17, I started <strong>ClickForAyurveda</strong>, an e-commerce website achieving 25-45% in profit margins.
@@ -892,63 +1027,44 @@
                     sure quality stayed consistent.
                 </p>
                 <p>
-                    I worked at a co-operative credit society in Walchandnagar doing banking operations. I validated
-                    financial data across member accounts, prepared monthly statements and budget reports in Excel, and
-                    documented accounting processes.
-                    Not glamorous, but I learned how financial institutions actually work at the ground level.
+                    That instinct for taking a system apart and rebuilding it properly is what pulled me into backend
+                    engineering. Today I build APIs with <strong>FastAPI</strong>, handle authentication with
+                    <strong>JWT and OAuth 2.0</strong>, and work with <strong>SQL/SQLAlchemy and Django</strong> to
+                    design the systems underneath a product rather than the storefront on top of it.
                 </p>
                 <p>
                     I finished my <strong>BCom In Banking and Finance with an 8.83 CGPA from SPPU university.</strong>
                     Now I'm pursuing an <strong>MCA in AI & Machine Learning</strong> at Amity University with ongoing 8.32 CGPA.
-                    I like solving real business problems using data, whether that's diagnosing why Spotify's algorithm
-                    keeps looping back to the same songs, or mapping out how Swiggy should expand into Tier-2 cities
-                    without bleeding cash on every order.
+                    On the AI side, I'm going beyond just using models - I'm learning the fundamentals of
+                    <strong>PyTorch, NLP, and LLMs</strong>, and training small models from scratch to actually understand
+                    what's happening under the hood: embeddings, attention, gradients, the whole training loop.
                 </p>
             </div>
             <div class="skills-grid reveal">
                 <div class="skill-category antigravity">
-                    <h3>Technical Skills</h3>
+                    <h3>Backend Engineering</h3>
                     <div class="skill-tags">
-                        <span class="skill-tag">Advanced Excel</span>
-                        <span class="skill-tag">SQL</span>
-                        <span class="skill-tag">Power BI</span>
                         <span class="skill-tag">Python</span>
+                        <span class="skill-tag">FastAPI</span>
+                        <span class="skill-tag">Django</span>
+                        <span class="skill-tag">JWT Authentication</span>
+                        <span class="skill-tag">OAuth 2.0</span>
+                        <span class="skill-tag">SQL / SQLAlchemy</span>
+                        <span class="skill-tag">Git / GitHub</span>
                     </div>
                 </div>
                 <div class="skill-category antigravity">
-                    <h3>Business Operations</h3>
+                    <h3>AI / Machine Learning</h3>
                     <div class="skill-tags">
-                        <span class="skill-tag">Unit Economics</span>
-                        <span class="skill-tag">Pricing Strategy</span>
-                        <span class="skill-tag">Supply Chain</span>
-                        <span class="skill-tag">Inventory & Risk Management</span>
-                        <span class="skill-tag">Market Analysis</span>
-                        <span class="skill-tag">Financial Analysis</span>
-                        <span class="skill-tag">Product Innovation</span>
-                    </div>
-                </div>
-                <div class="skill-category antigravity">
-                    <h3>BA Frameworks</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">BRD/FRD</span>
-                        <span class="skill-tag">User Stories</span>
-                        <span class="skill-tag">SWOT</span>
-                        <span class="skill-tag">PESTLE</span>
-                        <span class="skill-tag">RICE Prioritization</span>
-                        <span class="skill-tag">AARRR</span>
-                        <span class="skill-tag">North Star Metric</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">NLP / LLMs</span>
+                        <span class="skill-tag">Training Small Models</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <h3 class="section-title reveal" style="margin-top: 5rem; font-size: 2.2rem;">certifications</h3>
-        <div class="certifications-grid reveal">
-            <div class="cert-item antigravity">Google Advanced Data Analytics</div>
-            <div class="cert-item antigravity">Google Business Intelligence</div>
-            <div class="cert-item antigravity">IBM Data Science Professional Certificate</div>
-            <div class="cert-item antigravity">Google Data Analytics Professional Certificate</div>
-        </div>
     </section>
 
     <section id="achievements">
@@ -1015,6 +1131,19 @@
         <div class="experience-list">
             <div class="experience-card reveal antigravity">
                 <div class="experience-header">
+                    <div class="experience-role">Software Engineer</div>
+                    <div class="experience-company">Shekru Labs Pvt Ltd</div>
+                    <div class="experience-meta">04/07/2026 – Present | Pune, Maharashtra</div>
+                </div>
+                <ul class="experience-highlights">
+                    <li>Building backend features using FastAPI for an AI-based real estate investment advisor and property valuation platform</li>
+                    <li>Implementing authentication and authorization with JWT and OAuth 2.0</li>
+                    <li>Designing and managing database models and queries using SQLAlchemy</li>
+                </ul>
+            </div>
+
+            <div class="experience-card reveal antigravity">
+                <div class="experience-header">
                     <div class="experience-role">Intern</div>
                     <div class="experience-company">Shree Chhatrapati Co-operative Credit Society</div>
                     <div class="experience-meta">11/2024 – 01/2025 | Walchandnagar, Maharashtra</div>
@@ -1044,7 +1173,7 @@
                 <div class="experience-header">
                     <div class="experience-role">Founder & CEO</div>
                     <div class="experience-company">ClickForAyurveda</div>
-                    <div class="experience-meta">07/2017 – 12/2019 | Pune, Maharashtra</div>
+                    <div class="experience-meta">07/2020 – 12/2021 | Pune, Maharashtra</div>
                 </div>
                 <ul class="experience-highlights">
                     <li>Built e-commerce platform from scratch, achieving 25-45% profit margins</li>
@@ -1059,6 +1188,71 @@
     <section id="projects">
         <h2 class="section-title reveal">projects</h2>
         <div class="projects-grid">
+            <div class="project-card reveal antigravity">
+                <div class="project-header">
+                    <h3 class="project-title">Live GPT — Transformer From Scratch</h3>
+                    <div class="project-subtitle">Watching a Language Model Learn, Token by Token</div>
+                </div>
+                <p class="project-description">
+                    Built a small GPT-style transformer in PyTorch from the ground up — embeddings, multi-head causal
+                    self-attention, feed-forward blocks, and a full training loop — with a live terminal dashboard that
+                    streams the model's internals (loss, gradient norm, attention weights, next-token probabilities)
+                    in real time as it trains.
+                </p>
+                <div class="project-insights">
+                    <h4>Key Details:</h4>
+                    <ul>
+                        <li>Implemented causal self-attention and multi-head attention manually, without high-level shortcuts</li>
+                        <li>Built a character-level tokenizer and training pipeline from scratch</li>
+                        <li>Instrumented every layer to print live attention weights, embeddings, and gradients during training</li>
+                        <li>Used the model to generate new text after training on a small custom corpus</li>
+                    </ul>
+                </div>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">PyTorch</span>
+                    <span class="tech-tag">NLP / LLMs</span>
+                    <span class="tech-tag">Transformers</span>
+                </div>
+            </div>
+
+            <div class="project-card reveal antigravity">
+                <div class="project-header">
+                    <h3 class="project-title">Aligned to Whom?</h3>
+                    <div class="project-subtitle">Rejecting Moral Authority in the Age of Artificial Intelligence</div>
+                </div>
+                <p class="project-description">
+                    A philosophy paper arguing that the dominant AI alignment paradigm rests on a flawed assumption:
+                    that human values are stable, coherent, and extractable into code. Drawing on cross-cultural
+                    psychology, neuroscience, phenomenology, and political philosophy, it argues that encoding a single
+                    moral framework into AI risks freezing one generation's contested worldview into permanent,
+                    globally-scaled infrastructure.
+                </p>
+                <div class="project-insights">
+                    <h4>Key Ideas:</h4>
+                    <ul>
+                        <li>Shows human morality is culturally contingent and only partially accessible even to those who hold it</li>
+                        <li>Proposes "Sovereign Proceduralism," distinguishing defensive alignment (preventing clear harms like violence, fraud, coercion) from ideological alignment (taking sides on religion, politics, philosophy)</li>
+                        <li>Argues AI should enforce the former and actively avoid the latter, staying transparent about uncertainty and hospitable to disagreement</li>
+                        <li>Concludes AI's role is to remain an honest participant in human moral conversation, not to serve as its arbiter</li>
+                    </ul>
+                </div>
+                <div class="project-tech">
+                    <span class="tech-tag">Philosophy</span>
+                    <span class="tech-tag">AI Alignment</span>
+                    <span class="tech-tag">Political Philosophy</span>
+                </div>
+                <a href="https://medium.com/@nimbalkaryashraj53/aligned-to-whom-rejecting-moral-authority-in-the-age-of-artificial-intelligence-a792961affa7"
+                    target="_blank" rel="noopener noreferrer" class="project-link">
+                    Read Full Analysis
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                </a>
+            </div>
+
             <div class="project-card reveal antigravity">
                 <div class="project-header">
                     <h3 class="project-title">Spotify Algorithm Analysis</h3>
@@ -1132,11 +1326,12 @@
         <h2 class="section-title reveal">get in touch</h2>
         <div class="contact-content reveal">
             <p>
-                I'm looking for roles in Business Analytics, Product Analytics, Operations Analytics, or Strategy Analytics where I can apply my analytical skills to drive meaningful business impact and contribute to the team's success.
+                I'm looking for roles in Backend Engineering or Software Engineering where I can build reliable APIs
+                and systems with FastAPI, JWT, and OAuth 2.0 — and keep growing into AI/ML along the way.
             </p>
             <p>
-                Whether you want to discuss a project, explore collaboration opportunities, or just chat about data and
-                music algorithms, I'd love to hear from you.
+                Whether you want to discuss a project, explore collaboration opportunities, or just chat about
+                transformers and backend architecture, I'd love to hear from you.
             </p>
             <div class="social-links">
                 <a href="mailto:yashraj241103@gmail.com" class="social-link antigravity" target="_blank" rel="noopener noreferrer">
@@ -1181,90 +1376,147 @@
                 span.style.animationDelay = `${index * 0.15}s`;
                 textContainer.appendChild(span);
             });
-            
-            const underline = document.createElement('div');
-            underline.className = 'animated-underline';
-            underline.style.animationDelay = `${text.length * 0.15 + 0.4}s`;
-            textContainer.appendChild(underline);
+
+            const yashrajContainer = document.getElementById('yashrajText');
+            if (yashrajContainer) {
+                const underline = document.createElement('div');
+                underline.className = 'animated-underline';
+                underline.style.animationDelay = `${text.length * 0.15 + 0.4}s`;
+                yashrajContainer.appendChild(underline);
+            }
         }
         
         window.addEventListener('load', animateText);
 
-        // Interactive Floating Dots
-        const dotsContainer = document.getElementById('dotsContainer');
-        const numDots = 20;
-        const dots = [];
-        
-        for (let i = 0; i < numDots; i++) {
-            const dot = document.createElement('div');
-            const size = Math.random() < 0.3 ? 'small' : (Math.random() < 0.6 ? 'medium' : 'large');
-            dot.className = `floating-dot ${size}`;
-            
-            const angle = (i / numDots) * Math.PI * 2;
-            const radius = 120 + Math.random() * 80;
-            const x = Math.cos(angle) * radius;
-            const y = Math.sin(angle) * radius;
-            
-            dot.style.left = `${200 + x}px`;
-            dot.style.top = `${200 + y}px`;
-            
-            dotsContainer.appendChild(dot);
-            dots.push({
-                element: dot,
-                baseX: 200 + x,
-                baseY: 200 + y,
-                angle: angle,
-                radius: radius,
-                speed: 0.0005 + Math.random() * 0.001
-            });
+        // Status badge: subtle live-feeling latency fluctuation
+        const latencyEl = document.getElementById('statusLatency');
+        if (latencyEl) {
+            setInterval(() => {
+                const ms = 8 + Math.floor(Math.random() * 10); // 8-17ms
+                latencyEl.textContent = `${ms}ms`;
+            }, 2500);
         }
-        
-        let time = 0;
-        function animateDots() {
-            time += 1;
-            dots.forEach((dot) => {
-                const newAngle = dot.angle + time * dot.speed;
-                const x = Math.cos(newAngle) * dot.radius;
-                const y = Math.sin(newAngle) * dot.radius;
-                dot.element.style.left = `${200 + x}px`;
-                dot.element.style.top = `${200 + y}px`;
-            });
-            requestAnimationFrame(animateDots);
-        }
-        animateDots();
-        
-        let mouseX = 0, mouseY = 0;
-        dotsContainer.addEventListener('mousemove', (e) => {
-            const rect = dotsContainer.getBoundingClientRect();
-            mouseX = e.clientX - rect.left;
-            mouseY = e.clientY - rect.top;
-            
-            dots.forEach(dot => {
-                const dotX = parseFloat(dot.element.style.left);
-                const dotY = parseFloat(dot.element.style.top);
-                
-                const deltaX = mouseX - dotX;
-                const deltaY = mouseY - dotY;
-                const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-                
-                const maxDistance = 100;
-                if (distance < maxDistance) {
-                    const force = (maxDistance - distance) / maxDistance;
-                    const moveX = (deltaX / distance) * force * 20;
-                    const moveY = (deltaY / distance) * force * 20;
-                    
-                    dot.element.style.transform = `translate(${moveX}px, ${moveY}px)`;
-                } else {
-                    dot.element.style.transform = 'translate(0, 0)';
+
+        // Interactive Code Snippet Card
+        const codeData = JSON.parse(document.getElementById('code-data').textContent);
+        const codeSnippetEl = document.getElementById('codeSnippet');
+        const codeTabButtons = document.querySelectorAll('.code-tab-btn');
+        const codeCopyBtn = document.getElementById('codeCopyBtn');
+        const codeDownloadBtn = document.getElementById('codeDownloadBtn');
+        let currentCodeFile = 'main';
+
+        function highlightPython(code) {
+            const KEYWORDS = new Set(['async','def','return','if','not','raise','class','import','from','else','elif','for','while','in','is','and','or','None','True','False','pass','with','as']);
+            const TYPES = new Set(['Base','Column','Integer','String','Float','ForeignKey','relationship','HTTPException','OAuth2PasswordRequestForm','Depends']);
+
+            const escapeHtml = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+            return code.split('\n').map(line => {
+                if (line.trim().startsWith('#')) {
+                    return `<span class="code-comment">${escapeHtml(line)}</span>`;
                 }
+
+                let out = '';
+                let i = 0;
+                const n = line.length;
+
+                while (i < n) {
+                    const ch = line[i];
+
+                    // Whitespace — copy as-is
+                    if (ch === ' ') {
+                        out += ' ';
+                        i++;
+                        continue;
+                    }
+
+                    // Decorator: @name
+                    if (ch === '@') {
+                        let j = i + 1;
+                        while (j < n && /[\w.]/.test(line[j])) j++;
+                        out += `<span class="code-deco">${escapeHtml(line.slice(i, j))}</span>`;
+                        i = j;
+                        continue;
+                    }
+
+                    // String literal
+                    if (ch === '"' || ch === "'") {
+                        const quote = ch;
+                        let j = i + 1;
+                        while (j < n && line[j] !== quote) j++;
+                        j = Math.min(j + 1, n);
+                        out += `<span class="code-str">${escapeHtml(line.slice(i, j))}</span>`;
+                        i = j;
+                        continue;
+                    }
+
+                    // Identifier / keyword / type / function-call
+                    if (/[a-zA-Z_]/.test(ch)) {
+                        let j = i + 1;
+                        while (j < n && /[\w]/.test(line[j])) j++;
+                        const word = line.slice(i, j);
+                        const isCall = line[j] === '(';
+                        if (KEYWORDS.has(word)) {
+                            out += `<span class="code-kw">${word}</span>`;
+                        } else if (TYPES.has(word)) {
+                            out += `<span class="code-cls">${word}</span>`;
+                        } else if (isCall && word !== 'app') {
+                            out += `<span class="code-fn">${word}</span>`;
+                        } else {
+                            out += escapeHtml(word);
+                        }
+                        i = j;
+                        continue;
+                    }
+
+                    // Anything else (punctuation, numbers, etc.)
+                    out += escapeHtml(ch);
+                    i++;
+                }
+
+                return out;
+            }).join('\n');
+        }
+
+        function renderCodeFile(key) {
+            currentCodeFile = key;
+            codeSnippetEl.innerHTML = highlightPython(codeData[key]);
+        }
+
+        codeTabButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                codeTabButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderCodeFile(btn.getAttribute('data-file'));
             });
         });
-        
-        dotsContainer.addEventListener('mouseleave', () => {
-            dots.forEach(dot => {
-                dot.element.style.transform = 'translate(0, 0)';
+
+        if (codeCopyBtn) {
+            codeCopyBtn.addEventListener('click', () => {
+                navigator.clipboard.writeText(codeData[currentCodeFile]).then(() => {
+                    const original = codeCopyBtn.innerHTML;
+                    codeCopyBtn.innerHTML = '<span style="font-size:0.7rem;">Copied!</span>';
+                    setTimeout(() => { codeCopyBtn.innerHTML = original; }, 1500);
+                });
             });
-        });
+        }
+
+        if (codeDownloadBtn) {
+            codeDownloadBtn.addEventListener('click', () => {
+                const blob = new Blob([codeData[currentCodeFile]], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `${currentCodeFile}.py`;
+                a.click();
+                URL.revokeObjectURL(url);
+            });
+        }
+
+        // Initial load
+        if (codeSnippetEl) {
+            renderCodeFile('main');
+        }
 
         // Antigravity Effect
         document.addEventListener('mousemove', (e) => {
